@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="tg" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мирзозода Нуриддин — Software Engineer & AI Systems Integrator</title>
+  
+  <!-- Fonts & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans SC"', 'sans-serif'],
+          },
+          colors: {
+            surface: {
+              50: '#f8fafc',
+              900: '#090d16',
+              950: '#05070c'
+            },
+            accent: {
+              blue: '#2563eb',
+              cyan: '#06b6d4',
+              indigo: '#4f46e5'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-nav {
+      background: rgba(5, 7, 12, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .light .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .light .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .chat-scroll::-webkit-scrollbar { width: 4px; }
+    .chat-scroll::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-surface-950 text-slate-100 font-sans antialiased selection:bg-accent-blue selection:text-white transition-colors duration-300 light:bg-slate-50 light:text-slate-900">
+
+  <!-- Header Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800/60 light:border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent-blue to-accent-indigo flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-blue-500/20">
+          N
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-lg tracking-tight leading-none text-slate-100 light:text-slate-900">Nuri</span>
+          <span class="text-[11px] font-medium text-slate-400 font-mono tracking-wider">CODES</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-300 light:text-slate-700">
+        <a href="#about" class="hover:text-accent-blue transition-colors" data-i18n="nav_about">Дар бораи ман</a>
+        <a href="#education" class="hover:text-accent-blue transition-colors" data-i18n="nav_edu">Таҳсил</a>
+        <a href="#projects" class="hover:text-accent-blue transition-colors" data-i18n="nav_projects">Лоиҳаҳо</a>
+        <a href="#skills" class="hover:text-accent-blue transition-colors" data-i18n="nav_skills">Маҳоратҳо</a>
+        <a href="#contact" class="hover:text-accent-blue transition-colors" data-i18n="nav_contact">Алоқа</a>
+      </nav>
+
+      <!-- Action Utilities (Lang Selector, Theme, Social) -->
+      <div class="flex items-center gap-3">
+        
+        <!-- 5-Language Switcher -->
+        <div class="relative">
+          <select id="lang-selector" aria-label="Интихоби забон" class="bg-slate-900 border border-slate-700 light:bg-white light:border-slate-300 text-slate-200 light:text-slate-800 text-xs font-semibold rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-accent-blue cursor-pointer">
+            <option value="tg">🇹🇯 Тоҷикӣ</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+            <option value="zh">🇨🇳 中文</option>
+          </select>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" aria-label="Ивази режим" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 light:bg-white light:border-slate-200 light:text-slate-700 hover:text-white transition-all">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:inline"></i>
+        </button>
+
+        <!-- Primary CTA -->
+        <a href="https://t.me/miiirzozodaa" target="_blank" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue hover:bg-blue-600 text-white font-semibold text-xs transition-all shadow-md shadow-blue-500/20">
+          <i class="fa-brands fa-telegram text-sm"></i>
+          <span>Telegram</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Меню" class="lg:hidden p-2 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-800 bg-surface-950 px-6 py-4 space-y-3 text-sm">
+      <a href="#about" class="block py-1 text-slate-300 hover:text-white" data-i18n="nav_about">Дар бораи ман</a>
+      <a href="#education" class="block py-1 text-slate-300 hover:text-white" data-i18n="nav_edu">Таҳсил</a>
+      <a href="#projects" class="block py-1 text-slate-300 hover:text-white" data-i18n="nav_projects">Лоиҳаҳо</a>
+      <a href="#skills" class="block py-1 text-slate-300 hover:text-white" data-i18n="nav_skills">Маҳоратҳо</a>
+      <a href="#contact" class="block py-1 text-slate-300 hover:text-white" data-i18n="nav_contact">Алоқа</a>
+    </div>
+  </header>
+
+  <main class="pt-28">
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Details -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-accent-blue text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span data-i18n="hero_status">Омода барои ҳамкорӣ ва лоиҳаҳои нав</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            <span data-i18n="hero_hello">Салом, ман</span> <br>
+            <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Мирзозода Нуриддин</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-400 light:text-slate-600 max-w-2xl leading-relaxed font-normal" data-i18n="hero_desc">
+            Барномасози веб ва таҳиягари платформаҳои муосири омӯзишӣ ва сунъӣ (AI). Донишҷӯи Донишгоҳи давлатии тиҷорати Тоҷикистон.
+          </p>
+
+          <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <a href="#projects" class="px-6 py-3 rounded-xl bg-accent-blue hover:bg-blue-600 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-500/25 flex items-center gap-2">
+              <span data-i18n="btn_projects">Лоиҳаҳои ман</span>
+              <i class="fa-solid fa-arrow-down text-xs"></i>
+            </a>
+            <button onclick="toggleChat()" class="px-6 py-3 rounded-xl glass-card hover:bg-white/10 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2">
+              <i class="fa-solid fa-robot text-accent-cyan"></i>
+              <span data-i18n="btn_ai_chat">Сӯҳбат бо AI</span>
+            </button>
+          </div>
+
+          <!-- Quick Contacts -->
+          <div class="pt-8 border-t border-slate-800/80 light:border-slate-200 flex flex-wrap justify-center lg:justify-start gap-6 text-slate-400 text-xs">
+            <a href="https://t.me/miiirzozodaa" target="_blank" class="flex items-center gap-2 hover:text-accent-blue transition-colors">
+              <i class="fa-brands fa-telegram text-base text-blue-400"></i>
+              <span>@miiirzozodaa</span>
+            </a>
+            <a href="https://instagram.com/miiirzozodaa" target="_blank" class="flex items-center gap-2 hover:text-pink-400 transition-colors">
+              <i class="fa-brands fa-instagram text-base text-pink-500"></i>
+              <span>@miiirzozodaa</span>
+            </a>
+            <a href="mailto:mirzozoda272@gmail.com" class="flex items-center gap-2 hover:text-amber-400 transition-colors">
+              <i class="fa-solid fa-envelope text-base text-amber-400"></i>
+              <span>mirzozoda272@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-sm">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-xl opacity-25"></div>
+            
+            <div class="relative glass-card rounded-2xl p-4 overflow-hidden">
+              <div class="aspect-square rounded-xl overflow-hidden bg-slate-900 relative group">
+                <img 
+                  id="user-photo" 
+                  src="your-photo.jpg" 
+                  alt="Мирзозода Нуриддин" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 p-3 glass-card rounded-lg">
+                  <p class="text-[10px] font-bold text-accent-blue uppercase tracking-widest">Web & AI Architect</p>
+                  <p class="text-sm font-bold text-white mt-0.5">Мирзозода Нуриддин</p>
+                  <p class="text-xs text-slate-400">TSUC Student & Developer</p>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-around text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+                <span class="flex items-center gap-1.5"><i class="fa-brands fa-python text-amber-400"></i> Python</span>
+                <span class="flex items-center gap-1.5"><i class="fa-brands fa-js text-yellow-400"></i> JS/ES6+</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-brain text-purple-400"></i> AI Systems</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-900/40 light:bg-slate-100/60 border-y border-slate-800/60 light:border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <h2 class="text-xs font-bold text-accent-blue uppercase tracking-widest mb-2" data-i18n="about_subtitle">Шиносоӣ</h2>
+          <p class="text-3xl font-extrabold" data-i18n="about_title">Дар бораи ман</p>
+          <div class="w-10 h-1 bg-accent-blue mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-accent-blue flex items-center justify-center mb-6 text-xl">
+                <i class="fa-solid fa-bullseye"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-3" data-i18n="about_vision_title">Мақсад ва Дидгоҳи ман</h3>
+              <p class="text-slate-400 light:text-slate-600 text-sm leading-relaxed" data-i18n="about_vision_desc">
+                Ман ба сохтани маҳсулот ва веб-сайтҳое шавқ дорам, ки кори одамонро осон ва омӯзишро шавқовар мегардонанд. Аз сохтани платформаи омӯзиши забони чинӣ то таҳияи системаи нави монтажи видео тавассути ҳуши сунъӣ (AI) — ҳадафи ман татбиқи технологияҳои пешрафта дар ҳаёти амалӣ мебошад.
+              </p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-800 light:border-slate-200 flex justify-between text-xs text-slate-400">
+              <span data-i18n="location_lbl">Макони таҳсил:</span>
+              <span class="font-semibold text-slate-200 light:text-slate-800">Душанбе, Тоҷикистон</span>
+            </div>
+          </div>
+
+          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6 text-xl">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4" data-i18n="about_core_title">Самтҳои асосии фаъолият</h3>
+              <div class="space-y-3">
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 light:bg-white light:border-slate-200">
+                  <p class="text-xs text-accent-blue font-semibold">01. Web Interfaces</p>
+                  <h4 class="font-bold text-sm mt-0.5" data-i18n="about_item1_title">Платформаи омӯзиши чинӣ</h4>
+                  <p class="text-xs text-slate-400 mt-1" data-i18n="about_item1_desc">Сохтани саҳифаҳои интерактивӣ барои омӯзиши иероглифҳо ва вожаҳо.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 light:bg-white light:border-slate-200">
+                  <p class="text-xs text-purple-400 font-semibold">02. AI & Video Automation</p>
+                  <h4 class="font-bold text-sm mt-0.5" data-i18n="about_item2_title">AI-Монтажи Видео бо матн</h4>
+                  <p class="text-xs text-slate-400 mt-1" data-i18n="about_item2_desc">Пайваст кардани модели сунъӣ барои худкор сохтани видео аз рӯи ҷумла.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-800 light:border-slate-200 flex justify-between text-xs text-slate-400">
+              <span data-i18n="contact_lbl">Алоқаи зуд:</span>
+              <a href="https://t.me/miiirzozodaa" target="_blank" class="text-accent-blue font-semibold">@miiirzozodaa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h2 class="text-xs font-bold text-accent-blue uppercase tracking-widest mb-2" data-i18n="edu_subtitle">Академия</h2>
+        <p class="text-3xl font-extrabold" data-i18n="edu_title">Таҳсил ва Муҳити Академӣ</p>
+        <div class="w-10 h-1 bg-accent-blue mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-card p-8 rounded-2xl border border-blue-500/20 relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-6">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-accent-blue to-indigo-600 flex items-center justify-center text-white text-2xl shadow-lg shrink-0">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <span class="px-2.5 py-0.5 rounded-full bg-blue-500/10 text-accent-blue text-[11px] font-semibold border border-blue-500/20">
+                Higher Education
+              </span>
+              <h3 class="text-xl font-extrabold mt-1" data-i18n="edu_univ">Донишгоҳи давлатии тиҷорати Тоҷикистон (ДДТТ)</h3>
+              <p class="text-xs text-slate-400">Tajikistan State University of Commerce (TSUC)</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 light:text-slate-700 leading-relaxed border-t border-slate-800 light:border-slate-200 pt-6">
+            <p data-i18n="edu_desc1">
+              Ман дар Донишгоҳи давлатии тиҷорати Тоҷикистон таҳсил мекунам. Дар раванди таҳсил ба омӯзиши технологияҳои рақамӣ, иқтисоди рақамӣ, автоматизатсияи равандҳо ва барномасозӣ таваҷҷуҳи махсус медиҳам.
+            </p>
+            <p data-i18n="edu_desc2">
+              Муҳити донишгоҳ ва омӯзиши мустақилона ба ман имкон медиҳанд, ки назарияро бо амалия пайваст карда, лоиҳаҳои инноватсионӣ (аз қабили AI видео-монтаж ва веб-платформаҳо)-ро созам.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-slate-900/40 light:bg-slate-100/60 border-t border-slate-800/60 light:border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <h2 class="text-xs font-bold text-accent-blue uppercase tracking-widest mb-2" data-i18n="projects_subtitle">Портфолио</h2>
+          <p class="text-3xl font-extrabold" data-i18n="projects_title">Лоиҳаҳои асосии ман</p>
+          <div class="w-10 h-1 bg-accent-blue mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          
+          <!-- Project 1 -->
+          <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:border-blue-500/40 transition-all">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-amber-400" data-i18n="proj1_tag">Платформаи омӯзишӣ</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Interactive</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2" data-i18n="proj1_title">Сомонаи омӯзиши забони чинӣ (HSK 1)</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="proj1_desc">
+                Платформаи пурраи омӯзиши HSK 1: 15 дарс, тестҳо, флешкартаҳо, бозиҳо ва сертификати расмии PDF пас аз хатми курс.
+              </p>
+            </div>
+            <div class="px-6 pb-6 pt-0">
+              <a href="https://hsk1-frontend.vercel.app/" target="_blank" class="w-full py-2 rounded-lg bg-accent-blue hover:bg-blue-600 text-xs font-semibold text-white transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                <span>Кушодани сайт</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/40 transition-all">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-purple-400" data-i18n="proj2_tag">AI Video Integration</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Automation</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2" data-i18n="proj2_title">AI Video Editing Platform</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="proj2_desc">
+                Платформае, ки ба корбар имкон медиҳад танҳо бо навиштани ҷумла ё матн (prompt) видеоро ба таври худкор монтаж ва омода кунад.
+              </p>
+            </div>
+            <div class="px-6 pb-6 pt-0">
+              <button onclick="askAiAbout('AI Видео')" class="w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-all" data-i18n="btn_details">
+                Маълумоти пурра
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition-all">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-emerald-400" data-i18n="proj3_tag">Speed Typing</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Web App</span>
+              </div>
+              <h3 class="text-lg font-bold mb-2" data-i18n="proj3_title">Симулятори зуднависӣ</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="proj3_desc">
+                Веб-барнома барои машқи зуднависӣ бо ҳарфҳои махсуси алифбои тоҷикӣ (Ғ, Ӯ, Ҷ, Қ, Ҳ).
+              </p>
+            </div>
+            <div class="px-6 pb-6 pt-0">
+              <button onclick="askAiAbout('Симулятори зуднависӣ')" class="w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-all" data-i18n="btn_details">
+                Маълумоти пурра
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h2 class="text-xs font-bold text-accent-blue uppercase tracking-widest mb-2" data-i18n="skills_subtitle">Стек ва Асбобҳо</h2>
+        <p class="text-3xl font-extrabold" data-i18n="skills_title">Маҳоратҳои техникӣ</p>
+        <div class="w-10 h-1 bg-accent-blue mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card p-6 rounded-xl">
+          <i class="fa-brands fa-html5 text-2xl text-accent-blue mb-3"></i>
+          <h3 class="font-bold text-base mb-1">Frontend Engineering</h3>
+          <p class="text-xs text-slate-400">HTML5, CSS3, ES6+ JS, Tailwind CSS, Responsive Web Design.</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl">
+          <i class="fa-brands fa-python text-2xl text-purple-400 mb-3"></i>
+          <h3 class="font-bold text-base mb-1">Backend & Python</h3>
+          <p class="text-xs text-slate-400">Python Scripting, Telegram Bot API, REST APIs, Automation.</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl">
+          <i class="fa-solid fa-brain text-2xl text-emerald-400 mb-3"></i>
+          <h3 class="font-bold text-base mb-1">AI Systems</h3>
+          <p class="text-xs text-slate-400">Prompt Engineering, Text-to-Video Integration, OpenAI API.</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl">
+          <i class="fa-solid fa-language text-2xl text-amber-400 mb-3"></i>
+          <h3 class="font-bold text-base mb-1">EdTech Platforms</h3>
+          <p class="text-xs text-slate-400">Interactive Audio/Visual Language Tools (Chinese HSK Module).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5 space-y-6">
+          <h2 class="text-xs font-bold text-accent-blue uppercase tracking-widest" data-i18n="contact_subtitle">Алоқа</h2>
+          <p class="text-3xl font-extrabold" data-i18n="contact_title">Биёед якҷоя кор кунем!</p>
+          
+          <div class="space-y-4 pt-2">
+            <a href="https://t.me/miiirzozodaa" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-blue-500/50 transition-all">
+              <i class="fa-brands fa-telegram text-2xl text-blue-400"></i>
+              <div>
+                <p class="text-[10px] text-slate-400">Telegram</p>
+                <p class="font-bold text-sm">@miiirzozodaa</p>
+              </div>
+            </a>
+            <a href="https://instagram.com/miiirzozodaa" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-pink-500/50 transition-all">
+              <i class="fa-brands fa-instagram text-2xl text-pink-500"></i>
+              <div>
+                <p class="text-[10px] text-slate-400">Instagram</p>
+                <p class="font-bold text-sm">@miiirzozodaa</p>
+              </div>
+            </a>
+            <a href="mailto:mirzozoda272@gmail.com" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-amber-500/50 transition-all">
+              <i class="fa-solid fa-envelope text-2xl text-amber-400"></i>
+              <div>
+                <p class="text-[10px] text-slate-400">Email</p>
+                <p class="font-bold text-sm">mirzozoda272@gmail.com</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <form id="contact-form" class="glass-card p-8 rounded-2xl space-y-4">
+            <h3 class="text-lg font-bold mb-2" data-i18n="form_title">Фиристодани паём</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <input type="text" required placeholder="Номи шумо" data-i18n-ph="ph_name" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs focus:outline-none focus:border-accent-blue light:bg-white light:border-slate-300">
+              <input type="text" required placeholder="Email ё Telegram" data-i18n-ph="ph_contact" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs focus:outline-none focus:border-accent-blue light:bg-white light:border-slate-300">
+            </div>
+            <input type="text" placeholder="Мавзӯъ" data-i18n-ph="ph_subject" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs focus:outline-none focus:border-accent-blue light:bg-white light:border-slate-300">
+            <textarea rows="4" required placeholder="Матни паёми худро нависед..." data-i18n-ph="ph_msg" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-xs focus:outline-none focus:border-accent-blue light:bg-white light:border-slate-300 resize-none"></textarea>
+            <button type="submit" class="w-full py-3 rounded-xl bg-accent-blue hover:bg-blue-600 text-white font-semibold text-xs transition-all shadow-md shadow-blue-500/20" data-i18n="btn_send">
+              Фиристодани паём
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 light:border-slate-200 py-8 text-center text-xs text-slate-500">
+    <p>© 2026 Мирзозода Нуриддин. All rights reserved.</p>
+  </footer>
+
+  <!-- Live Chat Widget -->
+  <button id="chat-toggle" onclick="toggleChat()" aria-label="Чат бо AI" class="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-accent-blue text-white shadow-xl hover:scale-105 transition-all flex items-center gap-2">
+    <i class="fa-solid fa-comments text-lg"></i>
+    <span class="text-xs font-bold hidden sm:inline" data-i18n="chat_btn">Чат бо Ёрдамчӣ</span>
+  </button>
+
+  <div id="chat-modal" class="fixed bottom-20 right-6 z-50 w-[340px] sm:w-[380px] h-[460px] glass-card rounded-2xl border border-slate-800 shadow-2xl flex flex-col overflow-hidden hidden">
+    <div class="p-3.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-accent-blue flex items-center justify-center text-white text-xs font-bold">N</div>
+        <span class="text-xs font-bold">Nuriddin Digital Assistant</span>
+      </div>
+      <button onclick="toggleChat()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 chat-scroll text-xs">
+      <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 max-w-[85%]" data-i18n="chat_welcome">
+        Салом! Ман ёрдамчии рақамии Нуриддин ҳастам. Саволе доред?
+      </div>
+    </div>
+
+    <form id="chat-form" class="p-2.5 bg-slate-900 border-t border-slate-800 flex gap-2">
+      <input type="text" id="chat-input" placeholder="Паём нависед..." class="flex-1 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-200 focus:outline-none">
+      <button type="submit" class="px-3 py-1.5 rounded-lg bg-accent-blue text-white text-xs"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </div>
+
+  <!-- i18n & Core Logic Script -->
+  <script>
+    const translations = {
+      tg: {
+        nav_about: "Дар бораи ман", nav_edu: "Таҳсил", nav_projects: "Лоиҳаҳо", nav_skills: "Маҳоратҳо", nav_contact: "Алоқа",
+        hero_status: "Омода барои ҳамкорӣ ва лоиҳаҳои нав", hero_hello: "Салом, ман",
+        hero_desc: "Барномасози веб ва таҳиягари платформаҳои муосири омӯзишӣ ва сунъӣ (AI). Донишҷӯи Донишгоҳи давлатии тиҷорати Тоҷикистон.",
+        btn_projects: "Лоиҳаҳои ман", btn_ai_chat: "Сӯҳбат бо AI",
+        about_subtitle: "Шиносоӣ", about_title: "Дар бораи ман",
+        about_vision_title: "Мақсад ва Дидгоҳи ман",
+        about_vision_desc: "Ман ба сохтани маҳсулот ва веб-сайтҳое шавқ дорам, ки кори одамонро осон ва омӯзишро шавқовар мегардонанд. Аз сохтани платформаи омӯзиши забони чинӣ то таҳияи системаи нави монтажи видео тавассути ҳуши сунъӣ (AI) — ҳадафи ман татбиқи технологияҳои пешрафта дар ҳаёти амалӣ мебошад.",
+        location_lbl: "Макони таҳсил:", contact_lbl: "Алоқаи зуд:",
+        about_core_title: "Самтҳои асосии фаъолият",
+        about_item1_title: "Платформаи омӯзиши чинӣ", about_item1_desc: "Сохтани саҳифаҳои интерактивӣ барои омӯзиши иероглифҳо ва вожаҳо.",
+        about_item2_title: "AI-Монтажи Видео бо матн", about_item2_desc: "Пайваст кардани модели сунъӣ барои худкор сохтани видео аз рӯи ҷумла.",
+        edu_subtitle: "Академия", edu_title: "Таҳсил ва Муҳити Академӣ",
+        edu_univ: "Донишгоҳи давлатии тиҷорати Тоҷикистон (ДДТТ)",
+        edu_desc1: "Ман дар Донишгоҳи давлатии тиҷорати Тоҷикистон таҳсил мекунам. Дар раванди таҳсил ба омӯзиши технологияҳои рақамӣ, иқтисоди рақамӣ, автоматизатсияи равандҳо ва барномасозӣ таваҷҷуҳи махсус медиҳам.",
+        edu_desc2: "Муҳити донишгоҳ ва омӯзиши мустақилона ба ман имкон медиҳанд, ки назарияро бо амалия пайваст карда, лоиҳаҳои инноватсионӣ (аз қабили AI видео-монтаж ва веб-платформаҳо)-ро созам.",
+        projects_subtitle: "Портфолио", projects_title: "Лоиҳаҳои асосии ман",
+        proj1_tag: "Платформаи омӯзишӣ", proj1_title: "Сомонаи омӯзиши забони чинӣ (HSK 1)", proj1_desc: "Платформаи пурраи омӯзиши HSK 1: 15 дарс, тестҳо, флешкартаҳо, бозиҳо ва сертификати расмии PDF пас аз хатми курс.",
+        proj2_tag: "AI Video Integration", proj2_title: "AI Video Editing Platform", proj2_desc: "Платформае, ки ба корбар имкон медиҳад танҳо бо навиштани ҷумла ё матн (prompt) видеоро ба таври худкор монтаж ва омода кунад.",
+        proj3_tag: "Speed Typing", proj3_title: "Симулятори зуднависӣ", proj3_desc: "Веб-барнома барои машқи зуднависӣ бо ҳарфҳои махсуси алифбои тоҷикӣ (Ғ, Ӯ, Ҷ, Қ, Ҳ).",
+        btn_details: "Маълумоти пурра", skills_subtitle: "Стек ва Асбобҳо", skills_title: "Маҳоратҳои техникӣ",
+        contact_subtitle: "Алоқа", contact_title: "Биёед якҷоя кор кунем!", form_title: "Фиристодани паём",
+        ph_name: "Номи шумо", ph_contact: "Email ё Telegram", ph_subject: "Мавзӯъ", ph_msg: "Матни паёми худро нависед...",
+        btn_send: "Фиристодани паём", chat_btn: "Чат бо Ёрдамчӣ", chat_welcome: "Салом! Ман ёрдамчии рақамии Нуриддин ҳастам. Саволе доред?"
+      },
+      en: {
+        nav_about: "About Me", nav_edu: "Education", nav_projects: "Projects", nav_skills: "Skills", nav_contact: "Contact",
+        hero_status: "Open to Work & Collaborations", hero_hello: "Hello, I'm",
+        hero_desc: "Web Developer and AI Integration Specialist. Student at Tajikistan State University of Commerce.",
+        btn_projects: "My Projects", btn_ai_chat: "AI Chat Assistant",
+        about_subtitle: "Introduction", about_title: "About Me",
+        about_vision_title: "My Vision & Goals",
+        about_vision_desc: "I specialize in building intelligent web solutions that streamline user workflows. From Chinese language EdTech portals to automated AI text-to-video editing platforms, I implement cutting-edge technology.",
+        location_lbl: "Location:", contact_lbl: "Quick Contact:",
+        about_core_title: "Core Expertise",
+        about_item1_title: "Chinese EdTech Platform", about_item1_desc: "Interactive web pages for learning Hanzi, Pinyin, and vocabulary.",
+        about_item2_title: "Text-to-Video AI Engine", about_item2_desc: "AI integration for automated video editing directly from text prompts.",
+        edu_subtitle: "Academia", edu_title: "Education & Background",
+        edu_univ: "Tajikistan State University of Commerce (TSUC)",
+        edu_desc1: "Currently studying at TSUC with a core focus on Digital Economics, Process Automation, and Software Engineering.",
+        edu_desc2: "Combining academic foundations with independent development to build production-grade web applications.",
+        projects_subtitle: "Portfolio", projects_title: "Featured Projects",
+        proj1_tag: "EdTech Platform", proj1_title: "Chinese Learning Hub", proj1_desc: "Interactive language platform featuring Hanzi modules, audio listening drills, and HSK test preparation.",
+        proj2_tag: "AI Video Automation", proj2_title: "AI Video Editing Platform", proj2_desc: "Automated text-to-video rendering pipeline leveraging modern AI prompt engineering.",
+        proj3_tag: "Speed Typing", proj3_title: "Tajik Typing Simulator", proj3_desc: "Web utility for practicing speed typing with specific Tajik Cyrillic characters.",
+        btn_details: "View Details", skills_subtitle: "Tech Stack", skills_title: "Technical Skills",
+        contact_subtitle: "Contact", contact_title: "Let's Work Together!", form_title: "Send Message",
+        ph_name: "Your Name", ph_contact: "Email or Telegram", ph_subject: "Subject", ph_msg: "Write your message here...",
+        btn_send: "Send Message", chat_btn: "AI Assistant", chat_welcome: "Hello! I am Nuriddin's Digital Assistant. How can I help you?"
+      },
+      ru: {
+        nav_about: "Обо мне", nav_edu: "Образование", nav_projects: "Проекты", nav_skills: "Навыки", nav_contact: "Контакты",
+        hero_status: "Открыт для сотрудничества", hero_hello: "Привет, я",
+        hero_desc: "Веб-разработчик и разработчик решений на базе AI. Студент Таджикского государственного университета коммерции.",
+        btn_projects: "Мои проекты", btn_ai_chat: "Чат с AI",
+        about_subtitle: "Знакомство", about_title: "Обо мне",
+        about_vision_title: "Моя цель и видение",
+        about_vision_desc: "Я увлечен созданием цифровых продуктов, упрощающих жизнь. Мои проекты варьируются от платформ изучения китайского языка до систем автоматического монтажа видео с помощью ИИ.",
+        location_lbl: "Локация:", contact_lbl: "Быстрая связь:",
+        about_core_title: "Основные направления",
+        about_item1_title: "Платформа изучения китайского", about_item1_desc: "Интерактивный веб-интерфейс для изучения иероглифов и лексики.",
+        about_item2_title: "AI Видео-монтаж по тексту", about_item2_desc: "Интеграция ИИ для автоматического создания видео из текстовых описаний.",
+        edu_subtitle: "Академия", edu_title: "Образование",
+        edu_univ: "Таджикский государственный университет коммерции (ТГУК)",
+        edu_desc1: "Обучаюсь в ТГУК, уделяя особое внимание цифровой экономике, автоматизации процессов и программированию.",
+        edu_desc2: "Университетская база в сочетании со школой самообучения помогает мне создавать практические IT-проекты.",
+        projects_subtitle: "Портфолио", projects_title: "Главные проекты",
+        proj1_tag: "Образование", proj1_title: "Сайт изучения китайского", proj1_desc: "Веб-платформа для изучения иероглифов, пиньиня и аудирования для различных уровней HSK.",
+        proj2_tag: "ИИ Интеграция", proj2_title: "AI Video Editing Platform", proj2_desc: "Система автоматического монтажа видео по текстовому промпту с использованием ИИ.",
+        proj3_tag: "Тренажер", proj3_title: "Тренажер печати на таджикском", proj3_desc: "Веб-приложение для скоропечати с поддержкой уникальных букв таджикского алфавита.",
+        btn_details: "Подробнее", skills_subtitle: "Стек технологий", skills_title: "Технические навыки",
+        contact_subtitle: "Контакты", contact_title: "Давайте работать вместе!", form_title: "Отправить сообщение",
+        ph_name: "Ваше имя", ph_contact: "Email или Telegram", ph_subject: "Тема", ph_msg: "Текст вашего сообщения...",
+        btn_send: "Отправить", chat_btn: "AI Помощник", chat_welcome: "Здравствуйте! Я цифровой ассистент Нуриддина. Чем могу помочь?"
+      },
+      tr: {
+        nav_about: "Hakkımda", nav_edu: "Eğitim", nav_projects: "Projeler", nav_skills: "Yetenekler", nav_contact: "İletişim",
+        hero_status: "Yeni Projelere Açık", hero_hello: "Merhaba, ben",
+        hero_desc: "Web Geliştirici ve Yapay Zeka (AI) Sistemleri Entegratörü. Tacikistan Devlet Ticaret Üniversitesi Öğrencisi.",
+        btn_projects: "Projelerim", btn_ai_chat: "AI Asistan",
+        about_subtitle: "Tanıtım", about_title: "Hakkımda",
+        about_vision_title: "Vizyonum ve Hedeflerim",
+        about_vision_desc: "Kullanıcı deneyimini kolaylaştıran modern yazılımlar geliştiriyorum. Çince öğrenme platformlarından yapay zeka destekli otomatik video kurgu sistemlerine kadar yenilikçi teknolojiler sunuyorum.",
+        location_lbl: "Konum:", contact_lbl: "Hızlı İletişim:",
+        about_core_title: "Uzmanlık Alanları",
+        about_item1_title: "Çince Eğitim Platformu", about_item1_desc: "Karakter ve kelime öğrenimi için etkileşimli web arayüzleri.",
+        about_item2_title: "AI Metinden Video Oluşturma", about_item2_desc: "Metin komutlarıyla otomatik video kurgulayan yapay zeka entegrasyonu.",
+        edu_subtitle: "Akademi", edu_title: "Eğitim Geçmişi",
+        edu_univ: "Tacikistan Devlet Ticaret Üniversitesi (TSUC)",
+        edu_desc1: "TSUC bünyesinde Dijital Ekonomi, Süreç Otomasyonu ve Yazılım Geliştirme üzerine eğitim almaktayım.",
+        edu_desc2: "Teorik bilgileri pratik yazılım projeleriyle birleştirerek modern web çözümleri üretiyorum.",
+        projects_subtitle: "Portfolyo", projects_title: "Öne Çıkan Projeler",
+        proj1_tag: "Eğitim Teknolojisi", proj1_title: "Çince Öğrenme Sitesi", proj1_desc: "HSK seviyelerine uygun karakter, Pinyin ve dinleme pratikleri içeren etkileşimli platform.",
+        proj2_tag: "Yapay Zeka", proj2_title: "AI Video Kurgu Platformu", proj2_desc: "Yapay zeka modelleri ile metin komutlarından otomatik video üreten yazılım.",
+        proj3_tag: "Hızlı Yazma", proj3_title: "Tacikçe Klavye Simülatörü", proj3_desc: "Tacik alfabesindeki özel harflerle hızlı klavye yazma eğitimi sağlayan web uygulaması.",
+        btn_details: "Detayları Gör", skills_subtitle: "Teknolojiler", skills_title: "Teknik Beceriler",
+        contact_subtitle: "İletişim", contact_title: "Birlikte Çalışalım!", form_title: "Mesaj Gönder",
+        ph_name: "Adınız", ph_contact: "E-posta veya Telegram", ph_subject: "Konu", ph_msg: "Mesajınızı buraya yazın...",
+        btn_send: "Gönder", chat_btn: "AI Asistan", chat_welcome: "Merhaba! Ben Nuriddin'in dijital asistanıyım. Nasıl yardımcı olabilirim?"
+      },
+      zh: {
+        nav_about: "关于我", nav_edu: "教育背景", nav_projects: "项目展示", nav_skills: "专业技能", nav_contact: "联系方式",
+        hero_status: "接单 / 欢迎合作项目", hero_hello: "你好，我是",
+        hero_desc: "Web前端及AI人工智能系统开发者。塔吉克斯坦国立商业大学在校生。",
+        btn_projects: "浏览项目", btn_ai_chat: "AI 助手对话",
+        about_subtitle: "个人简介", about_title: "关于我",
+        about_vision_title: "我的目标与愿景",
+        about_vision_desc: "我致力于开发能够提高效率且具有互动性的数字产品。从中文在线学习平台到基于AI的文本生成视频剪辑系统，我始终追求将前沿技术应用于实际场景。",
+        location_lbl: "所在地:", contact_lbl: "快速联系:",
+        about_core_title: "核心开发方向",
+        about_item1_title: "中文学习 Web 平台", about_item1_desc: "针对汉字、拼音和词汇构建的交互式学习界面。",
+        about_item2_title: "AI 文本自动剪辑视频", about_item2_desc: "对接人工智能大模型，根据文本 Prompt 自动剪辑生成视频。",
+        edu_subtitle: "学术背景", edu_title: "教育经历",
+        edu_univ: "塔吉克斯坦国立商业大学 (TSUC)",
+        edu_desc1: "现就读于塔吉克斯坦国立商业大学，主修数字经济、流程自动化及软件工程相关课程。",
+        edu_desc2: "将大学专业知识与自主研发相结合，持续构建高质量的 Web 应用。",
+        projects_subtitle: "作品集", projects_title: "代表性项目",
+        proj1_tag: "教育科技", proj1_title: "中文在线学习网站", proj1_desc: "包含汉字学习、拼音标注、听力练习及 HSK 各级词汇库的互动平台。",
+        proj2_tag: "AI 自动化", proj2_title: "AI 智能视频剪辑平台", proj2_desc: "输入文本提示词即可通过 AI 模型自动完成视频素材匹配与剪辑。",
+        proj3_tag: "打字练习", proj3_title: "塔吉克语速记模拟器", proj3_desc: "针对塔吉克语特有字母 (Ғ, Ӯ, Ҷ, Қ, Ҳ) 设计的 Web 端打字练习工具。",
+        btn_details: "查看详情", skills_subtitle: "技术栈", skills_title: "专业技能",
+        contact_subtitle: "联系方式", contact_title: "期待与您的合作！", form_title: "发送留言",
+        ph_name: "您的姓名", ph_contact: "邮箱或 Telegram", ph_subject: "主题", ph_msg: "请输入您的留言内容...",
+        btn_send: "发送", chat_btn: "AI 助手", chat_welcome: "你好！我是努里丁的 AI 智能助手。请问有什么我可以帮您的？"
+      }
+    };
+
+    // Language switching logic
+    const langSelector = document.getElementById('lang-selector');
+    langSelector.addEventListener('change', (e) => {
+      setLanguage(e.target.value);
+    });
+
+    function setLanguage(lang) {
+      const data = translations[lang] || translations.tg;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (data[key]) el.textContent = data[key];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (data[key]) el.placeholder = data[key];
+      });
+    }
+
+    // Dark/Light Theme Switcher
+    const themeBtn = document.getElementById('theme-toggle');
+    themeBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light');
+    });
+
+    // Chat Modal Toggle
+    const chatModal = document.getElementById('chat-modal');
+    function toggleChat() {
+      chatModal.classList.toggle('hidden');
+    }
+
+    function askAiAbout(topic) {
+      chatModal.classList.remove('hidden');
+      const messages = document.getElementById('chat-messages');
+      const userMsg = document.createElement('div');
+      userMsg.className = "p-3 rounded-xl bg-accent-blue text-white text-right max-w-[85%] ml-auto";
+      userMsg.textContent = `Дар бораи ${topic} маълумот деҳ`;
+      messages.appendChild(userMsg);
+      
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = "p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 max-w-[85%]";
+        botMsg.textContent = `Нуриддин лоиҳаи "${topic}"-ро бо истифода аз стекҳои муосир ва стандартҳои IT сохтааст. Барои маълумоти бештар ба Telegram (@miiirzozodaa) нависед.`;
+        messages.appendChild(botMsg);
+        messages.scrollTop = messages.scrollHeight;
+      }, 400);
+    }
+  </script>
+<script src="chat.js"></script>
+</body>
+</html>
