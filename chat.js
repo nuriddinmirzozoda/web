@@ -1,9 +1,8 @@
 /* ============================================================
    Nuri Codes — чати дутарафа (тавассути бэкенд, на мустақим Telegram)
-   Пас аз deploy кардани бэкенд (ниг. README-и nuricodes-backend),
-   ин ҷоро ба URL-и Render-и худ иваз кунед:
    ============================================================ */
-const BACKEND_URL = "http://localhost:3000";
+// Суроғаи сервери Render-и худро дар ин ҷо ҷойгир кунед:
+const BACKEND_URL = "https://server-nomi-shumo.onrender.com";
 
 /* ---------- Visitor ID — то ба ин мизоҷ ҷавоб мутобиқ ояд ---------- */
 function getVisitorId() {
@@ -30,7 +29,7 @@ const chatInput = document.getElementById('chat-input');
 const chatMessages = document.getElementById('chat-messages');
 const chatToggleBtn = document.getElementById('chat-toggle');
 
-let lastPollTs = Date.now(); // паёмҳои пеш аз кушодани сомона мунтазир намемонем
+let lastPollTs = Date.now();
 let hasUnread = false;
 
 function addMessageToChat(text, sender) {
@@ -77,12 +76,15 @@ if (chatForm) {
     });
 }
 
-// Ҳар 4 сония ҷавоби навро месанҷем
+// Санҷиши ҷавобҳо аз сервер (Polling)
 setInterval(function () {
     fetch(`${BACKEND_URL}/api/chat/poll?visitorId=${encodeURIComponent(visitorId)}&since=${lastPollTs}`)
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) return { ok: false };
+            return res.json();
+        })
         .then(data => {
-            if (!data.ok || !data.messages || data.messages.length === 0) return;
+            if (!data || !data.ok || !data.messages || data.messages.length === 0) return;
             data.messages.forEach(m => {
                 addMessageToChat(m.text, 'bot');
                 lastPollTs = Math.max(lastPollTs, m.timestamp);
@@ -92,10 +94,10 @@ setInterval(function () {
                 showUnreadBadge();
             }
         })
-        .catch(() => { /* сервер хобида бошад, хомӯш нодида мегирем */ });
+        .catch(() => { /* нодида мегирем */ });
 }, 4000);
 
-// Вақте чат кушода мешавад, badge-ро тоза мекунем
+// Бастани нишондиҳандаи паёми хонданашуда
 const chatModalEl = document.getElementById('chat-modal');
 if (chatModalEl) {
     const observer = new MutationObserver(() => {
@@ -134,9 +136,9 @@ if (contactForm) {
             .then(data => {
                 if (submitBtn) {
                     submitBtn.disabled = false;
-                    submitBtn.textContent = data.ok ? 'Фиристода шуд ✓' : originalText;
+                    submitBtn.textContent = (data && data.success) ? 'Фиристода шуд ✓' : originalText;
                 }
-                if (data.ok) {
+                if (data && data.success) {
                     contactForm.reset();
                     setTimeout(() => { if (submitBtn) submitBtn.textContent = originalText; }, 2500);
                 } else {
